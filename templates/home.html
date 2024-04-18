@@ -5,18 +5,26 @@
 
 {% block content %}
 
-<h4>Home Page</h4>
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <h4>Home Page</h4>
 
 <p>
     {% if user.is_authenticated %}
         <b>Welcome, {{ user.username }}.</b>
-        <p><a href="{% url 'accounts:logout' %}">Logout</a></p>
-        <p><a href="{% url 'accounts:update' %}">Update</a></p>
+        <p><a href="{% url 'accounts:logout' %}" class="btn btn-warning">Logout</a></p>
+        <p><a href="{% url 'accounts:update' %}" class="btn btn-primary">Update</a></p>
     {% else %}
         <cite>Welcome guest!</cite>
-        <p><a href="{% url 'accounts:register' %}">Register</a></p>
-        <p><a href="{% url 'accounts:login' %}">Login</a></p>
+        <p><a href="{% url 'accounts:register' %}" class="btn btn-info">Register</a></p>
+        <p><a href="{% url 'accounts:login' %}" class="btn btn-dark">Login</a></p>
     {% endif %}
 </p>
+    <br>
+    <br>
+    <br>
+</div>
 
 {% endblock content %}

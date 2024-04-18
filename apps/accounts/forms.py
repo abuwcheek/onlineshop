@@ -15,7 +15,7 @@ class RegisterUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'phone']
+        fields = ('username', 'first_name', 'last_name', 'email', 'phone')
 
 
     def clean_email(self):
@@ -39,7 +39,7 @@ class RegisterUserForm(forms.ModelForm):
     def save(self, commit=True):
         password = self.cleaned_data.get('password')
 
-        user=super().save(commit)
+        user = super().save(commit)
         user.set_password(password)
         user.save()
 
@@ -70,7 +70,7 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class PasswordResetForm(forms.ModelForm):
-    email = forms.EmailField(widget=TextInput(attrs={'placeholder': 'email address'}), required=True)
+    email = forms.EmailField( widget=TextInput(attrs={'placeholder': 'email address'}), required=True)
 
 
     class Meta:

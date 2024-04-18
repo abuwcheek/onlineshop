@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Login {% endblock title %}
-
+{% block title %} login {% endblock title %}
 
 {% block content %}
 
@@ -11,6 +10,6 @@
         {{ form.as_p }}
         <input value="Login" type="submit">
     </form>
-    <a href="{% url 'accounts:password-reset' %}"><i>Forgot Password?</i></a>
+    <a href="{% url 'accounts:password-reset' %}" class="btn btn-secondary"><i>Forgot Password?</i></a>
 
 {% endblock content %}

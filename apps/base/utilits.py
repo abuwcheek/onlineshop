@@ -1,8 +1,7 @@
 import threading
-from django.core.mail import  EmailMessage
+from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 import random
-
 
 class EmailThreading(threading.Thread):
     def __init__(self, subject, body, to_email, content_type):
@@ -18,14 +17,10 @@ class EmailThreading(threading.Thread):
             body=self.body,
             to=[self.to_email]
         )
-        print(email)
         if self.content_type == 'html':
             email.content_subtype = 'html'
         email.send()
 
-
-
-CODE_LENGTH = 6
 
 def send_mail_code(email, code):
     html_content = render_to_string(
@@ -41,12 +36,17 @@ def send_mail_code(email, code):
 
     EmailThreading(subject, body, to_email, content_type).start()
 
+
+CODE_LENGTH = 6
+
+
 class VerifyEmailCode:
     def __init__(self):
         self.SIGN = ['1','2','3','4','5','6','7','8','9','0']
+        self.K = CODE_LENGTH
 
 
     def new_code(self):
-        code_list = random.sample(self.SIGN, k=CODE_LENGTH)
-        code = ''.join(code_list)
-        return code
+        self.code_list = random.sample(self.SIGN, k=self.K)
+        self.code = ''.join(self.code_list)
+        return self.code

@@ -131,7 +131,6 @@ AUTH_USER_MODEL = 'accounts.User'
 
 
 DEFAULT_FROM_EMAIL = 'abdulloistamov3@gmail.com'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 587  # SSL uchun 465, TLS uchun 587
