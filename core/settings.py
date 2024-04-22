@@ -130,10 +130,11 @@ AUTH_USER_MODEL = 'accounts.User'
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-DEFAULT_FROM_EMAIL = 'abdulloistamov3@gmail.com'
+DEFAULT_FROM_EMAIL = 'jmamatmusayev@gmail.com'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_PORT = 587  # SSL uchun 465, TLS uchun 587
 EMAIL_USE_TLS = True  # True yoki False bo'lishi mumkin
-EMAIL_HOST_USER = 'abdulloistamov3@gmail.com'
-EMAIL_HOST_PASSWORD = '08ED38FF459B540830E88522641613035BEE'
+EMAIL_HOST_USER = 'jmamatmusayev@gmail.com'
+EMAIL_HOST_PASSWORD = '92ACD18E429029D9EC3D7BF3D9471776DFD0'

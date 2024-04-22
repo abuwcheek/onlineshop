@@ -23,10 +23,10 @@ class RegisterUserView(View):
         user_form=self.form_class(data=request.POST)
         if user_form.is_valid():
             user_form.save()
-            messages.success(request, "Ro'yxatdan o'tdingiz!")
+            messages.info(request, "Ro'yxatdan o'tdingiz!")
             return redirect('index')
 
-        messages.error(request, "Ro'yxatdan o'ta olmadingiz!!!")
+        messages.warning(request, "Ro'yxatdan o'ta olmadingiz!!!")
         context = {
             'form': user_form,
         }
@@ -54,7 +54,7 @@ class LoginUserView(View):
                 messages.success(request, "Tizimga muvaffaqiyatli kirdingiz.")
                 return redirect('index')
 
-            messages.error(request, "Login yoki parol noto'g'ri.")
+            messages.errors(request, "Login yoki parol noto'g'ri.")
             contex = {
                 'form': user_form,
             }
@@ -73,7 +73,7 @@ class LogoutView(View):
 
     def get(self, request):
         logout(request)
-        messages.success(request, "Tizimdan muvaffaqiyatli chiqtingiz. ")
+        messages.info(request, "Tizimdan muvaffaqiyatli chiqtingiz. ")
         return redirect('index')
 
 
@@ -93,7 +93,7 @@ class UpdateUserView(View):
             messages.success(request, "Profil muvaffaqiyatli yangilandi.")
             return redirect("index")
 
-        messages.error(request, "Profil yangilanmadi!!!")
+        messages.warning(request, "Profil yangilanmadi!!!")
         return render(request,'accounts/update-profile.html', {'form': user_form})
 
 
@@ -113,7 +113,7 @@ class PasswordResetView(View):
             verify = email_form.save()
             send_mail_code(verify.email, verify.code)
 
-            messages.success(request, "Emailingizga kod yuborildi.")
+            messages.info(request, "Emailingizga kod yuborildi.")
             return redirect('accounts:check-code', uuid=verify.id)
 
         messages.error(request, email_form.errors)
@@ -141,13 +141,13 @@ class CheckVerifyCodeView(View):
 
         verify_code = UserResetPassword.objects.filter(id=uuid, expiration_time__gte=datetime.now(), is_confirmation=False, code=code).first()
         if not verify_code:
-            messages.error(request, "Kod xato yoki vaqti tugagan. ")
+            messages.warning(request, "Kod xato yoki vaqti tugagan. ")
             return render(request, 'accounts/password_reset_check_verify_code.html', {'form': verify_form})
 
         verify_code.is_confirmation = True
         verify_code.save()
 
-        messages.success(request, "Kod to'g'ri, endi yangi parol kiriting.")
+        messages.info(request, "Kod to'g'ri, endi yangi parol kiriting.")
         return redirect('accounts:password-reset-confirm', uuid=uuid)
 
 
@@ -176,5 +176,5 @@ class PasswordResetConfirmView(View):
             messages.success(request, "Parolingiz o'zgartirildi.")
             return redirect('accounts:login')
 
-        messages.error(request, "Parollar bir-biriga mos emas.")
+        messages.warning(request, "Parollar bir-biriga mos emas.")
         return render(request, 'accounts/password_reset_confirm.html', {'form': password_form})

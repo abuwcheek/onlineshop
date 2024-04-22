@@ -8,18 +8,24 @@
 <div class="container">
     <br>
     <br>
-    <br>
     <h4>Home Page</h4>
+    <br>
+    <br>
+
 
 <p>
     {% if user.is_authenticated %}
         <b>Welcome, {{ user.username }}.</b>
-        <p><a href="{% url 'accounts:logout' %}" class="btn btn-warning">Logout</a></p>
+    <br>
+    <br>
+        <p><a href="{% url 'accounts:logout' %}" class="btn btn-danger">Logout</a></p>
         <p><a href="{% url 'accounts:update' %}" class="btn btn-primary">Update</a></p>
     {% else %}
         <cite>Welcome guest!</cite>
-        <p><a href="{% url 'accounts:register' %}" class="btn btn-info">Register</a></p>
-        <p><a href="{% url 'accounts:login' %}" class="btn btn-dark">Login</a></p>
+    <br>
+    <br>
+        <p><a href="{% url 'accounts:register' %}" class="btn btn-secondary">Register</a></p>
+        <p><a href="{% url 'accounts:login' %}" class="btn btn-info">Login</a></p>
     {% endif %}
 </p>
     <br>

@@ -4,11 +4,23 @@
 {% block title %} register {% endblock title %}
 
 {% block content %}
+<br>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input value="Register" type="submit">
-    </form>
+<a href="{% url 'index' %}" class="btn btn-primary" style="margin: 10px;">Back to home</a>
+
+    <div class="container">
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <br>
+        <br>
+        <br>
+            <input value="Register" type="submit" class="btn btn-success">
+        </form>
+        <br>
+        <br>
+
+    </div>
 
 {% endblock content %}
