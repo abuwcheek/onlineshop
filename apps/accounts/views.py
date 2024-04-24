@@ -24,7 +24,7 @@ class RegisterUserView(View):
         if user_form.is_valid():
             user_form.save()
             messages.info(request, "Ro'yxatdan o'tdingiz!")
-            return redirect('index')
+            return redirect('home')
 
         messages.warning(request, "Ro'yxatdan o'ta olmadingiz!!!")
         context = {
@@ -48,7 +48,7 @@ class LoginUserView(View):
     def post(self, request):
         user_form = self.form_class(data=request.POST)
         if user_form.is_valid():
-            user = authenticate(request, username=user_form.cleaned_data['username'], password=user_form.cleaned_data['password'])
+            user = authenticate(request, email=user_form.cleaned_data['email'], password=user_form.cleaned_data['password'])
             if user:
                 login(request, user)
                 messages.success(request, "Tizimga muvaffaqiyatli kirdingiz.")
@@ -74,7 +74,7 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         messages.info(request, "Tizimdan muvaffaqiyatli chiqtingiz. ")
-        return redirect('index')
+        return redirect('home')
 
 
 
@@ -91,7 +91,7 @@ class UpdateUserView(View):
             user_form.save()
 
             messages.success(request, "Profil muvaffaqiyatli yangilandi.")
-            return redirect("index")
+            return redirect("home")
 
         messages.warning(request, "Profil yangilanmadi!!!")
         return render(request,'accounts/update-profile.html', {'form': user_form})

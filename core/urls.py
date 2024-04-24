@@ -7,7 +7,7 @@ from apps.base.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
-    path('', index, name='index')
+    path('', include('apps.product.urls'))
 ]
 
 

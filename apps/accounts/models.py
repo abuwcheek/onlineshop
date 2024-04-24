@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import timedelta, datetime
@@ -6,6 +8,14 @@ from apps.base.models import BaseModel
 class User(AbstractUser):
     phone = models.CharField(max_length=20, null=True, blank=True)
     photo = models.ImageField(upload_to='users/', default='default/user.png ', blank=True)
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} + {self.last_name}"
 
 
     def save(self, *args, **kwargs):
@@ -13,9 +23,6 @@ class User(AbstractUser):
             self.phone = self.username
             super().save(*args, **kwargs)
 
-    @property
-    def full_name(self):
-        return f"{self.first_name} + {self.last_name}"
 
 
     def __str__(self):
@@ -25,6 +32,7 @@ class User(AbstractUser):
 EMAIL_EXPIRE_TIME = 5
 
 class UserResetPassword(BaseModel):
+    private_id = models.UUIDField(default=uuid.uuid4, editable=False)
     email = models.EmailField(blank=True, null=True, unique=False)
     code = models.CharField(max_length=15, blank=True, null=True)
     expiration_time = models.DateTimeField(blank=True, null=True)
