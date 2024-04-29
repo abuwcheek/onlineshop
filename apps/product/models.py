@@ -182,3 +182,26 @@ class Review(BaseModel):
     @property
     def stars_percent(self):
         return round(int(self.rate * 100 / 5), 1)
+
+
+
+
+class About(BaseModel):
+    phone_number = models.CharField(max_length=20)
+    location = models.CharField(max_length=500)
+    address = models.CharField(max_length=100)
+    hours = models.CharField(max_length=50)
+    our_team_image = models.ImageField(upload_to='our_team/')
+    team_title = models.CharField(max_length=50)
+    team_body = models.TextField()
+    team_person_name = models.CharField(max_length=50)
+    team_person_position = models.CharField(max_length=50)
+    team_person_facebook = models.CharField(max_length=100)
+    team_person_instagram = models.CharField(max_length=100)
+    team_person_linkedin = models.CharField(max_length=100)
+    team_person_twitter = models.CharField(max_length=100)
+    shop_facebook = models.CharField(max_length=100)
+    shop_instagram = models.CharField(max_length=100)
+    shop_linkedin = models.CharField(max_length=100)
+    shop_twitter = models.CharField(max_length=100)
+    

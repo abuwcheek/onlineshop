@@ -71,14 +71,14 @@
                         <a href="/"><img src="{% static 'imgs/theme/logo-default.png' %}" alt="logo"></a>
                     </div>
                     <div class="search-style-2">
-                        <form action="#">
+                        <form action="GET" action="{% url 'shop' %}">
                             <select class="select-active">
                                 <option>All Categories</option>
                                 {% for ctg in last_child_ctg %}
                                 <option>{{ ctg.name }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="text" placeholder="Search for items…">
+                            <input type="text" placeholder="Search for items…" name="search">
                             <button type="submit"> <i class="far fa-search"></i> </button>
                         </form>
                     </div>
@@ -160,7 +160,7 @@
                                         {% if forloop.counter < 4 %}
                                             {% if category.get_children %}
                                                 <li class="has-children">
-                                                    <a href="#">
+                                                    <a href="{% url 'shop' category.id %}">
                                                         {% if category.icon %}<img style="margin-right: 17px" width="19px" height="19px" src="{{ category.icon.url }}">{% endif %}
                                                         {{ category.name }}
                                                     </a>
@@ -174,7 +174,7 @@
                                                                                     <ul>
                                                                                         <li><span class="submenu-title">{{ sub_category.name }}</span></li>
                                                                                         {% for sub_sub_category in sub_category.get_children %}
-                                                                                            <li><a class="dropdown-item nav-link nav_item" href="#">{{ sub_sub_category.name }}</a></li>
+                                                                                            <li><a class="dropdown-item nav-link nav_item" href="{% url 'shop' sub_category.id %}">{{ sub_sub_category.name }}</a></li>
                                                                                         {% endfor %}
                                                                                     </ul>
                                                                                 </li>
@@ -238,7 +238,7 @@
                                 <li>
                                     <a href="page-about.html">About</a>
                                 </li>
-                                <li><a href="/">Shop</a>
+                                <li><a href="{% url 'shop' %}">Shop</a>
                                   
                                 </li>
                                 <li class="position-static"><a href="#">Mega menu <i class="fa fa-chevron-down"></i></a>
@@ -278,7 +278,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                    <a href="/">Contact</a>
+                                    <li><a href="/">Contact</a></li>
                                 </li>
                             </ul>
                         </nav>
@@ -371,8 +371,8 @@
             </div>
             <div class="mobile-header-content-area">
                 <div class="mobile-search search-style-3 mobile-header-border">
-                    <form action="#">
-                        <input type="text" placeholder="Search…">
+                    <form method="GET" action="{% url 'shop' %}">
+                        <input type="text" placeholder="Search…" name="search">
                         <button type="submit"> <i class="far fa-search"></i> </button>
                     </form>
                 </div>
@@ -441,33 +441,7 @@
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
-                                    <li><a href="blog-category-list.html">Blog Category List</a></li>
-                                    <li><a href="blog-category-big.html">Blog Category Big</a></li>
-                                    <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                    <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Single Product Layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog-post-left.html">Left Sidebar</a></li>
-                                            <li><a href="blog-post-right.html">Right Sidebar</a></li>
-                                            <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="page-about.html">About Us</a></li>
-                                    <li><a href="page-contact.html">Contact</a></li>
-                                    <li><a href="page-account.html">My Account</a></li>
-                                    <li><a href="page-login-register.html">login/register</a></li>
-                                    <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                    <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="page-terms.html">Terms of Service</a></li>
-                                    <li><a href="page-404.html">404 Page</a></li>
-                                </ul>
-                            </li>
+                           
                         </ul>
                     </nav>
                     <!-- mobile menu end -->
@@ -654,6 +628,9 @@
     <script src="{% static 'js/plugins/scrollup.js' %}"></script>
     <script src="{% static 'js/plugins/jquery.vticker-min.js' %}"></script>
     <!-- Template  JS -->
+
+    {% block script %}
+    {% endblock script %}
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 

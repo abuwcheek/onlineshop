@@ -150,7 +150,7 @@
                         <div class="row product-grid-4">
                             {% for f_product in fuatured_products %}
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30">
+                                <div class="product-cart-wrap mb-30" style="width: 200px;" >
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="shop-product-right.html">
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="/">{{ f_product.categories.first.name }}</a>
+                                            <a href="/">{{ f_product.categories.last.name }}</a>
                                         </div>
                                         <h2><a href="/">{{ f_product.title }}</a></h2>
                                         <div class="rating-result" title="{{ f_product.get_reviews_count }}">
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ pop_product.categories.first.name }}</a>
+                                            <a href="shop-grid-right.html">{{ pop_product.categories.last.name }}</a>
                                         </div>
                                         <h2><a href="shop-product-right.html">{{ pop_product.title }}</a></h2>
                                         <div class="rating-result" title="({{ pop_product.get_reviews_count }})%">
@@ -273,7 +273,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="/">{{ n_add_product.categories.first.name }}</a>
+                                            <a href="/">{{ n_add_product.categories.last.name }}</a>
                                         </div>
                                         <h2><a href="/">{{ n_add_product.title }}</a></h2>
                                         <div class="rating-result" title="({{ n_add_product.get_reviews_count }})%">
@@ -398,7 +398,7 @@
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="/">{{ n_arr_product.categories.first.name }}</a>
+                                    <a href="/">{{ n_arr_product.categories.last.name }}</a>
                                 </div>
                                 <h2><a href="/">{{ n_arr_product.title }}</a></h2>
                                 <div class="rating-result" title="({{ n_arr_product.get_reviews_count }})">
@@ -535,7 +535,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ most_best_product.categories.first.name }}</a>
+                                                    <a href="/">{{ most_best_product.categories.last.name }}</a>
                                                 </div>
                                                 <h2><a href="/">{{ most_best_product.title }}</a></h2>
                                                 <div class="rating-result" title="({{ most_best_product.get_reviews_count }})%">
@@ -586,7 +586,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ monthly_best_sell_popular.categories.first.name }}</a>
+                                                    <a href="/">{{ monthly_best_sell_popular.categories.last.name }}</a>
                                                 </div>
                                                 <h2><a href="/">{{ monthly_best_sell_popular.title }}</a></h2>
                                                 <div class="rating-result" title="({{ monthly_best_sell_popular.get_reviews_count }})">
@@ -636,7 +636,7 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ most_best_n_a.categories.first.name }}</a>
+                                                    <a href="/">{{ most_best_n_a.categories.last.name }}</a>
                                                 </div>
                                                 <h2><a href="/">{{ most_best_n_a.title }}</a></h2>
                                                 <div class="rating-result" title="({{ most_best_n_a.get_reviews_count }})">
@@ -706,12 +706,13 @@
                                     <h4 class="title-small">
                                         <a href="shop-product-right.html">{{ foot_deal.title }}</a>
                                     </h4>
+                                    <p>{{ foot_deal.categories.last.name }}</p>
                                     <div class="product-price">
                                         {% if foot_deal.get_new_price %}
                                         <span class="old-price">{{ foot_deal.get_price }} so'm</span><br>
                                         <span>{{ foot_deal.get_new_price }} so'm</span>
                                         {% else %}
-                                        <span>{{ foot_deal.get_new_price }} so'm</span>
+                                        <span>{{ foot_deal.get_price }} so'm</span>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -732,6 +733,7 @@
                                     <h4 class="title-small">
                                         <a href="shop-product-right.html">{{ foot_top_sel.title }}</a>
                                     </h4>
+                                    <p>{{ foot_top_sel.categories.last.name }}</p>
                                     <div class="product-price">
                                         {% if foot_top_sel.get_new_price %}
                                         <span class="old-price">{{ foot_top_sel.get_price }} so'm</span><br>
@@ -757,6 +759,7 @@
                                     <h4 class="title-small">
                                         <a href="shop-product-right.html">{{ foot_h_rel.title }}</a>
                                     </h4>
+                                    <p>{{ foot_h_rel.categories.last.name }}</p>
                                     <div class="product-price">
                                         {% if foot_h_rel.get_new_price %}
                                         <span class="old-price">{{ foot_h_rel.get_price }} so'm</span><br>

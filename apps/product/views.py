@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Product, Brand
-
+from .models import Product, Brand, Category
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 class HomePageView(View):
     def get(self, request):
@@ -17,6 +18,7 @@ class HomePageView(View):
         foot_deals_outlet = products.order_by('?')[:3]
         foot_top_selling = products.order_by('?')[:3]
         foot_hot_releases = products.order_by('?')[:3]
+
 
         context = {
             'products': products,
@@ -35,3 +37,74 @@ class HomePageView(View):
         return render(request, 'products/index.html', context)
 
 
+class ShopAllView(View):
+    def get(self, request):
+
+        sort_by = request.GET.get('sort_by', '?')
+
+        shop_product = Product.objects.all().filter(is_active=True).order_by(sort_by)
+        categories = Category.objects.all().filter(is_active=True, parent=None)
+
+        page_size = request.GET.get('page_size', 10)
+        if page_size == 'all':
+            page_size = shop_product.count()
+
+
+        paginator = Paginator(shop_product, page_size)
+        page = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page)
+
+
+
+        new_product = shop_product.order_by('-created_at')[:3]
+
+        
+        context = {
+            'shop_product': page_obj,
+            'page_size': page_size,
+            'categories': categories,
+            'new_product': new_product,
+        }
+        return render(request, 'products/shop.html', context)
+
+
+
+class ShopCategoryView(View):
+    def get(self, request, uuid):
+        ctg = get_object_or_404(Category, id=uuid)
+        categories = Category.objects.all().filter(is_active=True, parent=ctg)
+        if not categories:
+            categories = Category.objects.all().filter(is_active=True, level=1)
+
+        ctg_products = ctg.products.filter(is_active=True).order_by('?')
+
+        page_size = request.GET.get('page_size', 10)
+        paginator = Paginator(ctg_products, page_size)
+
+        page = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page)
+        
+
+
+        context = {
+            'shop_product': page_obj,
+            'page_size': page_size,
+            'categories': categories, 
+        }
+        return render(request, 'products/shop.html', context)
+
+
+
+class SearchView(View):
+    def get(self, request):
+        query = request.GET.get('search')
+        if not query:
+            searchs = Product.objects.all().order_by('-created_at')
+        else:
+            searchs = Product.objects.all().filter(Q(title__icontains = query) | Q(description__icontains = query))
+
+        context = {
+            'searchs': searchs,
+        }
+
+        return render(request, 'products/shop.html', context)
