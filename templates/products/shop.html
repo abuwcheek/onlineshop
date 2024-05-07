@@ -67,14 +67,14 @@
                             </div>
                         </div>
 
-                        <div class="row product-grid-3">
+                        <div class="row product-grid-3 pl-40">
 
                             {% for produc in shop_product %}
                             <div class="col-lg-4 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="/">
+                                            <a href="{% url 'detail' produc.id %}">
                                                 <img class="default-img" src="{{ produc.images.first.image_url }}" alt="">
                                                 <img class="hover-img" src="{{ produc.images.last.image_url }}" alt="">
                                             </a>
@@ -90,20 +90,20 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ produc.categories.first.name }}</a>
+                                            <a href="{% url 'detail' produc.id %}">{{ produc.categories.first.name }}</a>
                                         </div>
-                                        <h2><a href="shop-product-right.html">{{ produc.title }}</a></h2>
+                                        <h2><a href="{% url 'detail' produc.id %}">{{ produc.title }}</a></h2>
                                         <div class="rating-result" title="({{ produc.get_reviews_count }})">
                                             <span>
                                                 <span>({{ produc.get_reviews_count }} sharhlar)</span>
                                             </span>
                                         </div>
                                         <div class="product-price">
-                                            {% if produc.get_new_price %}
+                                            {% if produc.percentage %}
                                             <span class="old-price">{{ produc.get_price }} so'm</span><br>
                                             <span>{{ produc.get_new_price }} so'm</span>
                                             {% else %}
-                                            <span class="old-price">{{ produc.get_price }} so'm</span>
+                                            <span>{{ produc.get_price }} so'm</span>
                                             {% endif %}
                                         </div>
                                         <div class="product-action-1 show">
@@ -113,7 +113,6 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            
                         </div>
 
                         <!--pagination-->
@@ -217,9 +216,15 @@
                                             <img src="{{ n_product.images.first.image_url }}" alt="#">
                                         </div>
                                         <div class="content pt-10">
-                                            <h5><a href="{% url 'shop' n_product.id %}">{{ n_product.title }}</a></h5>
-                                            <p class="price mb-0 mt-5">{{ n_product.get_price }} so'm</p>
+                                            <h5><a href="{% url 'detail' n_product.id %}">{{ n_product.title }}</a></h5>
+                                            {% if n_product.percentage %}
+                                            <p><del class="old-price">{{ n_product.get_price }} so'm</del></p>
+                                            <h5 class="price mb-0 mt-5">{{ n_product.get_new_price }} so'm</h5>   
                                             <span>({{ n_product.get_reviews_count }} sharhlar)</span>
+                                            {% else %}
+                                            <h5 class="old-price">{{ n_product.get_price }} so'm</h5> 
+                                            <span>({{ n_product.get_reviews_count }} sharhlar)</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -243,11 +248,9 @@
                                 </div>
                                 <div class="">
                                     <ul class="categor-list">
-                                        <li class="cat-item text-muted"><a href="shop-grid-right.html">Adidas</a>(125)</li>
-                                        <li class="cat-item text-muted"><a href="shop-grid-right.html">Armani</a>(68)</li>
-                                        <li class="cat-item text-muted"><a href="shop-grid-right.html">Burberry</a>(274)</li>
-                                        <li class="cat-item text-muted"><a href="shop-grid-right.html">Chanel</a>(152)</li>
-                                        <li class="cat-item text-muted"><a href="shop-grid-right.html">Prada</a>(302)</li>
+                                        {% for br in brands %}
+                                        <li class="cat-item text-muted"><a href="#">{{ br.name }}</a>{{ br.products.count }}</li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>

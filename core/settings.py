@@ -36,6 +36,11 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.product',
     'apps.base',
+    'apps.order',
+
+
+    # installed
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +71,16 @@ TEMPLATES = [
         },
     },
 ]
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 800,
+        'width': 500,
+    },
+}
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 

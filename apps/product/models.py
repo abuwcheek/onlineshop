@@ -7,6 +7,8 @@ from colorfield.fields import ColorField
 from django.db.models import Avg
 from django.utils.safestring import mark_safe
 from PIL import Image
+from ckeditor.fields import RichTextField
+
 
 COLOR_PALETTE = [
         ("#FFFFFF", "white", ),
@@ -91,8 +93,8 @@ class Product(BaseModel):
     title = models.CharField(max_length=150)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
     categories = models.ManyToManyField(Category, blank=True, related_name='products')
-    mini_desc = models.TextField()
-    description = models.TextField()
+    mini_desc = RichTextField()
+    description = RichTextField()
     status = models.CharField(max_length=10, choices=PRODUCT_STATUS_CHOICES, default='NEW')
     percentage = models.FloatField(default=0)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
@@ -125,8 +127,8 @@ class Product(BaseModel):
 
     @property
     def get_avg_rating(self):
-        rating = self.reviews.all().aggregate(rating_avg=Avg('rating', default=0))
-        return round(rating['rating_avg'], 1)
+        rating = self.reviews.all().aggregate(rating_avg=Avg('rate', default=0))
+        return round(rating['rating_avg'], 1) * 20
 
 
 class ProductSize(BaseModel):
@@ -204,4 +206,3 @@ class About(BaseModel):
     shop_instagram = models.CharField(max_length=100)
     shop_linkedin = models.CharField(max_length=100)
     shop_twitter = models.CharField(max_length=100)
-    

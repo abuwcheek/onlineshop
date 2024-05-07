@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Product, Brand, Category
+from .models import Product, Brand, Category, ProductSize, Size
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -95,6 +95,24 @@ class ShopCategoryView(View):
 
 
 
+class ProductDetailView(View):
+    def get(self, request, uuid):
+        product = get_object_or_404(Product, id=uuid)
+        product_color = product.sizes.all().distinct()
+        product_sizes = product.sizes.all().values('size').distinct()
+        pro_sizes = Size.objects.filter(id__in=product_sizes)
+        print(pro_sizes)
+        product_comment = product.reviews.all().filter(is_active=True).order_by('?')[:3]
+
+        context = {
+            'product': product,
+            'product_color': product_color,
+            'product_size': pro_sizes,
+            'product_comment': product_comment,
+        }
+        return render(request, 'products/detail.html', context)
+
+
 class SearchView(View):
     def get(self, request):
         query = request.GET.get('search')
@@ -107,4 +125,4 @@ class SearchView(View):
             'searchs': searchs,
         }
 
-        return render(request, 'products/shop.html', context)
+        # return render(request, 'products/shop.html', context)
