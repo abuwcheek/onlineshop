@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  home page
+  detail page
 {% endblock title %}
 
 
@@ -104,8 +104,11 @@
                                             </div>
                                             <div class="product-extra-link2">
                                                 <button type="submit" class="button button-add-to-cart">Add to cart</button>
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="far fa-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="far fa-exchange-alt"></i></a>
+                                                <form action="{% url 'add_to_favorite' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="product_id" value="{{ product.id }}"><br>
+                                                    <button type="submit" class="button button-add-to-cart"><i class="far fa-heart"></i></button>
+                                                </form>
                                             </div>
                                         </div>
                                         

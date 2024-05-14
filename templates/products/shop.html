@@ -12,7 +12,7 @@
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
-                    <a href="index.html" rel="nofollow">Home</a>
+                    <a href="{% url 'home' %}" rel="nofollow">Home</a>
                     <span></span> Shop
                 </div>
             </div>
@@ -80,9 +80,7 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn hover-up"><i class="far fa-search"></i></a>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="/"><i class="far fa-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="/"><i class="far fa-exchange-alt"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{% url 'add_to_favorite' %}"><i class="far fa-heart"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             <span class="{{ produc.status|lower }}">{{ produc.status }}</span>
