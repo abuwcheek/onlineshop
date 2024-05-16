@@ -23,7 +23,7 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <!-- <p> We found <strong class="text-brand">688</strong> items for you!</p>   (qiymatlar sherdan chiqadi) -->
+                                <!-- <p> We found <strong class="text-brand">688</stxrong> items for you!</p>   (qiymatlar sherdan chiqadi) -->
                             </div>
                             <div class="sort-by-product-area">
                                 <div class="sort-by-cover mr-10">
@@ -80,7 +80,7 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{% url 'add_to_favorite' %}"><i class="far fa-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{% url 'add_to_favorite' %}?product_id={{produc.id}}"><i class="far fa-heart"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             <span class="{{ produc.status|lower }}">{{ produc.status }}</span>

@@ -47,14 +47,14 @@
                                         <td class="text-center" data-title="Stock">
                                             <span class="color3" style="font-weight: bold;">{{ like.product.status }}</span>
                                         </td>
-                                        <td class="btn btn-rounded btn-sm"><a href="">Add to cart</a><i class="far fa-shopping-bag mr-5"></i></td>
+                                        <td class="btn btn-rounded btn-sm"><a href="{% url 'add-shop-cart' like.product.id %}">Add to cart</a><i class="far fa-shopping-bag mr-5"></i></td>
                                         <td class="action" data-title="Remove"><a href="{% url 'delete-favorite' like.id %}"><i class="fa fa-trash-alt"></i></a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </section>
