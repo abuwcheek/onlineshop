@@ -1,0 +1,122 @@
+﻿{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    about page
+{% endblock title %}
+
+
+{% block content %}
+  
+
+     
+    <main class="main single-page">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="/" rel="nofollow">Home</a>
+                    <span></span> About us
+                </div>
+            </div>
+        </div>
+        <br>
+        <section id="team" class="pt-50 wow fadeIn animated">
+            <div class="container">
+                <div class="row mb-50 align-items-center">
+                    <div class="col-md-6">
+                        <h6 class="mt-0 mb-5 text-uppercase font-sm text-brand wow fadeIn animated">Our Team</h6>
+                        <h2 class="mb-15 wow fadeIn animated">Top team of experts</h2>
+                        <p class="text-grey-3 wow fadeIn animated">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione optio perferendis sequi mollitia quis autem ea cupiditate possimus!</p>
+                    </div>
+                    <div class="col-md-6 text-md-end mt-30">
+                        <a class="btn btn-outline btn-lg btn-brand-outline font-weight-bold text-brand text-hover-white border-radius-5 btn-shadow-brand hover-up">All Members</a>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <div class="row wow fadeIn animated">
+                        {% for data in about %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="blog-card border-radius-10 overflow-hidden text-center">
+                                <img src="{{ data.our_team_image.url }}" alt="" class="border-radius-10 mb-30 hover-up">
+                                <h4 class="fw-500 mb-0">{{ data.team_person_name }}</h4>
+                                <p class="fw-400 text-brand mb-10">{{ data.team_person_position }}</p>
+                                <div class="social-icons social-icons-colored-hover">
+                                    <ul class="text-grey-5 d-inline-block">
+                                        <li class="social-facebook"><a href="{{ data.team_person_facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="social-twitter"><a href="{{ data.team_person_twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="social-instagram"><a href="{{ data.team_person_instagram }}"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="social-linkedin"><a href="{{ data.team_person_linkedin }}"><i class="fab fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--col-->
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="mt-50 pt-50 pb-50 section-border">
+            <div class="container">
+                <div class="row mb-50">
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <h2 class="mb-15 text-grey-1 wow fadeIn animated">Our main branches<br> around the world</h2>
+                        <p class="w-50 m-auto text-grey-3 wow fadeIn animated">At vero eos et accusamus et iusto odio dignissimos ducimus quiblanditiis praesentium. ebitis nesciunt voluptatum dicta reprehenderit accusamus</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img class="btn-shadow-brand hover-up border-radius-10 bg-brand-muted wow fadeIn animated" src="{% static 'imgs/page/company-1.jpg' %}" alt="">
+                        <h4 class="mt-30 mb-15 wow fadeIn animated">New York, USA</h4>
+                        <p class="text-grey-3 wow fadeIn animated">27 Division St, New York<br>NY 10002, USA</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img class="btn-shadow-brand hover-up border-radius-10 bg-brand-muted wow fadeIn animated" src="{% static 'imgs/page/company-2.jpg' %}" alt="">
+                        <h4 class="mt-30 mb-15 wow fadeIn animated">Paris, France</h4>
+                        <p class="text-grey-3 wow fadeIn animated">22 Rue des Carmes<br> 75005 Paris</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img class="btn-shadow-brand hover-up border-radius-10 bg-brand-muted wow fadeIn animated" src="{% static 'imgs/page/company-3.jpg' %}" alt="">
+                        <h4 class="mt-30 mb-15 wow fadeIn animated">Jakarta, Indonesia</h4>
+                        <p class="text-grey-3 wow fadeIn animated">2476 Raya Yogyakarta,<br>89090 Indonesia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="clients" class="pt-50 pb-50 bg-brand-muted bg-grey-9">
+            <div class="row mb-30">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h2 class="mb-5 text-grey-1 wow fadeIn animated">Our Brands</h2>
+                </div>
+            </div>
+            <div class="container">
+                <div class="carausel-6-columns-cover arrow-center position-relative wow fadeIn animated">
+                    <div class="slider-arrow slider-arrow-3 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
+                    <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
+                        {% for brand in brands %}
+                        <div class="brand-logo">
+                            <h4 class="mt-30 mb-15 wow fadeIn animated" style="color: darkkhaki;">{{ brand.name }}</h4>
+                            <img class="img-grey-hover" src="{{ brand.icon.url }}" alt="">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock content %}
+
+{% block script %}
+    
+    <!-- Template  JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/shop.js' %}"></script>
+
+    <script src="{% static 'js/plugins/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/plugins/custom-parallax.js' %}"></script>
+    <!-- Template  JS -->
+{% endblock script %}

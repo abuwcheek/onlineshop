@@ -206,3 +206,4 @@ class About(BaseModel):
     shop_instagram = models.CharField(max_length=100)
     shop_linkedin = models.CharField(max_length=100)
     shop_twitter = models.CharField(max_length=100)
+    

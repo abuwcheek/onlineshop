@@ -7,7 +7,7 @@ class PaymentForm(forms.ModelForm):
           model = Payment
           fields = ['country', 'address', 'phone']
           widgets = {
-               'country': forms.TextInput(attrs={'class': 'form-control'}),
-               'address': forms.TextInput(attrs={'class': 'form-control'}),
-               'phone': forms.TextInput(attrs={'class': 'form-control'}),
+               'country': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'country'}),
+               'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'address'}),
+               'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'phone'}),
           }

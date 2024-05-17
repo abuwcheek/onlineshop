@@ -29,7 +29,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="#">(+01) - 2345 - 6789</a></li>
+                                <li><a href="/">(93) 715-10-34</a></li>
                                 <li><i class="fa fa-map-marker-alt mr-5"></i><a target="_blank" href="/">Our location</a></li>
                             </ul>
                         </div>
@@ -76,10 +76,10 @@
                             <select class="select-active">
                                 <option>All Categories</option>
                                 {% for ctg in last_child_ctg %}
-                                <option>{{ ctg.name }}</option>
+                                    <option>{{ ctg.name }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="text" placeholder="Search for items…" name="search">
+                            <input type="text" placeholder="search for items…" name="search">
                             <button type="submit"> <i class="far fa-search"></i> </button>
                         </form>
                     </div>
@@ -115,7 +115,7 @@
                         <a href="/"><img src="{% static 'imgs/theme/logo-white.png' %}" alt="logo"></a>
                     </div>
                     <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categori-button-active" href="#">
+                        <a class="categori-button-active" href="/">
                             <span class="fa fa-list"></span> Browse Categories <i class="down far fa-chevron-down"></i> <i class="up far fa-chevron-up"></i>
                         </a>
                             <div class="categori-dropdown-wrap categori-dropdown-active-large">
@@ -152,7 +152,7 @@
                                                                         <div class="banne_info">
                                                                             <h6>10% Off</h6>
                                                                             <h4>New Arrival</h4>
-                                                                            <a href="/">Shop now</a>
+                                                                            <a href="#  ">Shop now</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="header-banner2">
@@ -169,7 +169,7 @@
                                                 </li>
                                             {% else %}
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="{% url 'shop' category.id %}">
                                                         {% if category.icon %}<img style="margin-right: 17px" width="19px" height="19px" src="{{ category.icon.url }}">{% endif %}
                                                         {{ category.name }}
                                                     </a>
@@ -200,7 +200,7 @@
                                     
                                 </li>
                                 <li>
-                                    <a href="#">About</a>
+                                    <a href="{% url 'about' %}">About</a>
                                 </li>
                                 <li><a href="{% url 'shop' %}">Shop</a>
                                   
@@ -210,10 +210,10 @@
 
                                        {% for category in mega_menu %}
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
-                                                <a class="menu-title" href="#">{{ category.name }}</a>
+                                                <a class="menu-title" href="{% url 'shop' %}">{{ category.name }}</a>
                                                 <ul>
                                                     {% for sub_ctg in category.get_children %}
-                                                    <li><a href="#">{{ sub_ctg.name }}</a></li>
+                                                    <li><a href="{% url 'shop' sub_ctg.id %}">{{ sub_ctg.name }}</a></li>
                                                     {% endfor %}
                                                 </ul>
                                             </li>
@@ -248,7 +248,7 @@
                         </nav>
                     </div>
                     <div class="hotline d-none d-lg-block">
-                        <p><i class="fa fa-phone-alt"></i><span>Hotline</span> 1900 - 888 </p>
+                        <p><i class="fa fa-phone-alt"></i><span>Hotline</span>(93) 715-10-34</p>
                     </div>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
@@ -393,17 +393,9 @@
                                 <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
                             </div>
                             <div class="col my-4 my-md-0">
-                                <h5 class="font-size-15 ml-4 mb-0">...and receive <strong>$25 coupon for first shopping.</strong></h5>
+                                <a href="{% url 'shop' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <!-- Subscribe Form -->
-                        <form class="form-subcriber d-flex wow fadeIn animated">
-                            <input type="email" class="form-control bg-white font-small" placeholder="Enter your email">
-                            <button class="btn bg-dark text-white" type="submit">Subscribe</button>
-                        </form>
-                        <!-- End Subscribe Form -->
                     </div>
                 </div>
             </div>
@@ -418,10 +410,10 @@
                             </div>
                             <h4 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h4>
                             <p class="wow fadeIn animated">
-                                <strong>Address: </strong>562 Wellington Road, Street 32, San Francisco
+                                <strong>Address: </strong>{{ about.address }}
                             </p>
                             <p class="wow fadeIn animated">
-                                <strong>Phone: </strong>+01 2222 365 /(+91) 01 2345 6789
+                                <strong>Phone: </strong>{{ about.phone_number }}
                             </p>
                             <p class="wow fadeIn animated">
                                 <strong>Hours: </strong>10:00 - 18:00, Mon - Sat

@@ -34,7 +34,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="cart_total_label">Cart Subtotal</td>
-                                                    <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">$240.00</span></td>
+                                                    <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">{{ total }} so'm</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="cart_total_label">Shipping</td>
@@ -42,12 +42,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="cart_total_label">Total</td>
-                                                    <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">$240.00</span></strong></td>
+                                                    <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">{{ total }} so'm</span></strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="#" class="btn btn-rounded"> <i class="fa fa-share-square mr-10"></i> Proceed To CheckOut</a>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn btnn-rounded btn-sm mt-3" type="submit"><i class="far fa-arrow-right mr-5"></i>Return to shop</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

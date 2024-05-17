@@ -200,7 +200,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fa fa-filter mr-5 ml-0"></i> Fillter</a>
+                                <a href="#" class="btn btn-sm btn-default"><i class="fa fa-filter mr-5 ml-0"></i> Fillter</a>
                             </div>
                             <!-- Product sidebar Widget -->
                             <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
@@ -216,12 +216,12 @@
                                         <div class="content pt-10">
                                             <h5><a href="{% url 'detail' n_product.id %}">{{ n_product.title }}</a></h5>
                                             {% if n_product.percentage %}
-                                            <p><del class="old-price">{{ n_product.get_price }} so'm</del></p>
-                                            <h5 class="price mb-0 mt-5">{{ n_product.get_new_price }} so'm</h5>   
-                                            <span>({{ n_product.get_reviews_count }} sharhlar)</span>
+                                                <p><del class="old-price">{{ n_product.get_price }} so'm</del></p>
+                                                <h5 class="price mb-0 mt-5">{{ n_product.get_new_price }} so'm</h5>   
+                                                <span>({{ n_product.get_reviews_count }} sharhlar)</span>
                                             {% else %}
-                                            <h5 class="old-price">{{ n_product.get_price }} so'm</h5> 
-                                            <span>({{ n_product.get_reviews_count }} sharhlar)</span>
+                                                <h5 class="old-price">{{ n_product.get_price }} so'm</h5> 
+                                                <span>({{ n_product.get_reviews_count }} sharhlar)</span>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -234,7 +234,7 @@
                                     <div class="banner-text">
                                         <span>Gaming Area</span>
                                         <h4>Save 17% on <br>Assus Laptop</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                        <a href="#">Shop Now <i class="fa fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -246,8 +246,8 @@
                                 </div>
                                 <div class="">
                                     <ul class="categor-list">
-                                        {% for br in brands %}
-                                        <li class="cat-item text-muted"><a href="#">{{ br.name }}</a>{{ br.products.count }}</li>
+                                        {% for brand in brands %}
+                                            <li class="cat-item text-muted"><a href="#">{{ brand.name }}</a>({{ brand.products.count }})</li>
                                         {% endfor %}
                                     </ul>
                                 </div>

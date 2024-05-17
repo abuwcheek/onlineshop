@@ -11,7 +11,7 @@ class RegisterUserForm(forms.ModelForm):
     phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'phone'}), required=True)
 
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}), required=True)
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm_password'}), required=True)
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}), required=True)
 
     class Meta:
         model = User

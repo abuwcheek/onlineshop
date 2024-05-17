@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Sevimlilar, AddToCardInWishlist
+from .models import Sevimlilar, AddToCardInWishlist, Payment
 from django.views import View
 from apps.product.models import Product
 from django.db.models import Q
+from .forms import PaymentForm
 # Create your views here.
 
 
@@ -62,9 +63,39 @@ def delete_shop_cart(request, uuid):
 
 class ShopAddressView(View):
      def get(self, request):
-          user = request.user
-          orders = AddToCardInWishlist.objects.filter(Q(user=user) & Q(status=False))
+          form = PaymentForm()
           context = {
-               'orders': orders,
+               'form': form,
           }
           return render(request, 'products/shop-address.html', context)
+
+     def post(self, request):
+          
+          user = request.user
+          orders = AddToCardInWishlist.objects.filter(Q(user=user) & Q(status=False))
+          form = PaymentForm(request.POST)
+          if form.is_valid():
+               payment = form.save(commit=False)
+               payment.save()
+               payment.order.set(orders)
+
+               return redirect('payment', uuid=payment.id)
+
+          
+class PaymentView(View):
+     def get(self, request, uuid):
+          total = 0
+          payment = Payment.objects.get(id=uuid)
+          for order in payment.order.all().filter(status = False):
+               total += order.product.get_new_price * order.quantity
+          context = {
+               'total': total,
+          }
+          return render(request, 'products/cart-totals.html', context)
+
+     def post(self, request, uuid):
+          payment = Payment.objects.get(id=uuid)
+          for order in payment.order.all():
+               order.status = True
+               order.save()
+          return redirect('shop')

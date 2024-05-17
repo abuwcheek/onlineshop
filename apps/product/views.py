@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Product, Brand, Category, ProductSize, Size
+from .models import Product, Brand, Category, ProductSize, Size, About
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -111,6 +111,17 @@ class ProductDetailView(View):
             'product_comment': product_comment,
         }
         return render(request, 'products/detail.html', context)
+
+
+
+class AboutView(View):
+    def get(self, request):
+        about = About.objects.all()
+        context={
+            'about': about
+        }
+        return render(request, 'products/about.html', context)
+
 
 
 class SearchView(View):
