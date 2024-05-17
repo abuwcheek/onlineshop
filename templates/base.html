@@ -242,67 +242,31 @@
                                         </li>
                                     </ul>
                                 </li>
-                                    <li><a href="/">Contact</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
                                 </li>
                             </ul>
                         </nav>
                     </div>
+                    
                     <div class="hotline d-none d-lg-block">
                         <p><i class="fa fa-phone-alt"></i><span>Hotline</span>(93) 715-10-34</p>
                     </div>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="{% url 'favorite' %}">
                                     <img alt="wowy" src="{% static 'imgs/theme/icons/icon-heart-white.svg' %}">
-                                    <span class="pro-count white">4</span>
+                                    <span class="pro-count white">{{ sevimlilar }}</span>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{% url 'shop-cart' %}">
                                     <img alt="wowy" src="{% static 'imgs/theme/icons/icon-cart-white.svg' %}">
-                                    <span class="pro-count white">02</span>
+                                    <span class="pro-count white">{{ cards }}</span>
                                 </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="wowy" src="{% static 'imgs/shop/thumbnail-3.jpg' %}"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Apple Watch Serial 7</a></h4>
-                                                <h3><span>1 × </span>$800.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="far fa-times"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="wowy" src="{% static 'imgs/shop/thumbnail-4.jpg' %}"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                                <h3><span>1 × </span>$3500.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="far fa-times"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$383.00</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="shop-cart.html">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="page-login-register.html">
+                                <a href="{% url 'accounts:update' %}">
                                     <img alt="wowy" src="{% static 'imgs/theme/icons/icon-user-white.svg' %}">
                                 </a>
                             </div>
@@ -377,6 +341,15 @@
         </div>
     </div>
 
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     {% block content %}
       
     {% endblock content %}
@@ -393,7 +366,7 @@
                                 <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
                             </div>
                             <div class="col my-4 my-md-0">
-                                <a href="{% url 'shop' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Link</a>
+                                <a href="{% url 'contact' %}" class="btn btn-secondary btn-lg active font-weight-bold btn-shadow-brand hover-up" role="button" aria-pressed="true">Contact Us</a>
                             </div>
                         </div>
                     </div>
