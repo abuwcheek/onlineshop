@@ -132,6 +132,21 @@ class ContactView(View):
         }
         return render(request, 'products/contact.html', context)
 
+    
+    # def post(self, request):
+    #     data=request.POST
+    #     contact=Contact()
+
+    #     contact.name=data.get('name')
+    #     contact.phone=data.get('phone')
+    #     contact.email=data.get('email')
+    #     contact.subject=data.get('subject')
+    #     contact.message=data.get('message')
+
+    #     contact.save()
+
+    #     return render(request, 'contact.html')
+
 
 
 class SearchView(View):

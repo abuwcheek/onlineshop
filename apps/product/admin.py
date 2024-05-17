@@ -71,7 +71,7 @@ class ProductSizeAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductSizeAdmin, ProductImageInline]
     prepopulated_fields = {"slug": ('title',)}
-    list_display = ('title', 'percentage','brand', 'id', 'status', 'is_active')
+    list_display = ('title', 'created_at', 'percentage','brand', 'id', 'status', 'is_active')
     search_fields = ('title', 'status', 'brand',)
     list_filter = ['created_at', 'status', 'is_active']
     list_display_links = ('title', 'brand', 'id')

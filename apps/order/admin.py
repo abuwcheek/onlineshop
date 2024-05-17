@@ -22,8 +22,8 @@ class AddToCardInWishlistAdmin(admin.ModelAdmin):
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-     list_display = ['country','address','phone','total',]
-     list_display_links = ['country']
+     list_display = ['country','address','phone','total', 'created_at',]
+     list_display_links = ['country','address']
      list_filter = ['country']
      search_fields = ['country']
      list_per_page = 10
