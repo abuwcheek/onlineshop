@@ -29,8 +29,8 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="/">(93) 715-10-34</a></li>
-                                <li><i class="fa fa-map-marker-alt mr-5"></i><a target="_blank" href="/">Our location</a></li>
+                                <li><a href="/">{{ about.phone_number }}</a></li>
+                                <li><i class="fa fa-map-marker-alt mr-5"></i><a target="_blank" href="/">{{ about.location }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a href="{% url 'accounts:update' %}">
+                                <a href="{% url 'accounts:profile' %}">
                                     <img alt="wowy" src="{% static 'imgs/theme/icons/icon-user.svg' %}">
                                 </a>
                             </div>
@@ -249,7 +249,7 @@
                     </div>
                     
                     <div class="hotline d-none d-lg-block">
-                        <p><i class="fa fa-phone-alt"></i><span>Hotline</span>(93) 715-10-34</p>
+                        <p><i class="fa fa-phone-alt"></i><span>Hotline</span>{{ about.phone_number }}</p>
                     </div>
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
@@ -378,47 +378,46 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="widget-about font-md mb-md-5 mb-lg-0">
-                            <div class="logo logo-width-1 wow fadeIn animated">
-                                <a href="index.html"><img src="{% static 'imgs/theme/logo-default.png' %}" alt="logo"></a>
-                            </div>
-                            <h4 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h4>
+                            
+                            <h4 class="mt-5 mb-10 fw-600 text-black wow fadeIn animated">Contact</h4>
+                            <br>
                             <p class="wow fadeIn animated">
-                                <strong>Address: </strong>{{ about.address }}
+                                <strong style="color: maroon; font-size: 17px;">Address: </strong>{{ about.address }}
                             </p>
                             <p class="wow fadeIn animated">
-                                <strong>Phone: </strong>{{ about.phone_number }}
+                                <strong style="color: maroon; font-size: 17px;">Phone: </strong>{{ about.phone_number }}
                             </p>
                             <p class="wow fadeIn animated">
-                                <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+                                <strong style="color: maroon; font-size: 17px;">Hours: </strong>{{ about.hours}}
                             </p>
-                            <h4 class="mb-10 mt-20 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h4>
+                            <br>
+                            <br>
+                            <br>
+                            <h4 class="mb-10 mt-20 fw-600 text-black wow fadeIn animated">Follow Us</h4>
                             <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
-                                <a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="tumblr" href="#"><i class="fab fa-tumblr"></i></a>
-                                <a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="facebook" href="{{ about.shop_facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a class="twitter" href="{{ about.shop_twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a class="tumblr" href="{{ about.shop_linkedin }}" target="_blank"><i class="fab fa-tumblr"></i></i></a>
+                                <a class="instagram" href="{{ about.shop_instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-3">
                         <h5 class="widget-title mb-30 wow fadeIn animated">About</h5>
                         <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms &amp; Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'shop-cart' %}">View Cart</a></li>
+                            <li><a href="{% url 'favorite' %}">My Wishlist</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-2  col-md-3">
                         <h5 class="widget-title mb-30 wow fadeIn animated">My Account</h5>
                         <ul class="footer-list wow fadeIn animated">
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="#">Order</a></li>
+                            <li><a href="{% url 'accounts:login' %}">Sign In</a></li>
+                            <li><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                            <li><a href="{% url 'accounts:update' %}">View Profile</a></li>
+                            <li><a href="{% url 'shop' %}">Order</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
@@ -446,11 +445,11 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-lg-6">
-                    <p class="float-md-left font-sm text-muted mb-0">&copy; 2021, <strong class="text-brand">Wowy</strong> - HTML Ecommerce Template </p>
+                    <p class="float-md-left font-sm text-muted mb-0">(2024) <strong class="text-brand">Abdullo Istamov</strong></p>
                 </div>
                 <div class="col-lg-6">
                     <p class="text-lg-end text-start font-sm text-muted mb-0">
-                         All rights reserved
+                        Online Shop
                     </p>
                 </div>
             </div>

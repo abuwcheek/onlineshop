@@ -102,12 +102,12 @@
                                                 <span class="qty-val">1</span>
                                                 <a href="#" class="qty-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
                                             </div>
-                                            <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart">Add to cart</button>
-                                                <form action="{% url 'add_to_favorite' %}" method="post">
+                                            <a href="{% url 'add-shop-cart' product.id %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add cart</a>
+                                            <div class="product-extra-link5">
+                                                <form action="{% url 'add_to_favorite' %}?product_id={{product.id}}" method="post">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="product_id" value="{{ product.id }}"><br>
-                                                    <button type="submit" class="button button-add-to-cart"><i class="far fa-heart"></i></button>
+                                                    <button type="submit" class="button button-add-to-cart" style="margin: 0 0 80% 20px;"><i class="far fa-heart"></i></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -123,14 +123,13 @@
                                     <div class="single-social-share clearfix mt-50 mb-15">
                                         <p class="mb-15 mt-30 font-sm"> <i class="fa fa-share-alt mr-5"></i> Share this</p>
                                         <div class="mobile-social-icon wow fadeIn  mb-sm-5 mb-md-0 animated">
-                                            <a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-                                            <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
-                                            <a class="tumblr" href="#"><i class="fab fa-tumblr"></i></a>
-                                            <a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+                                            <a class="facebook" href="{{ about.shop_facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="twitter" href="{{ about.shop_twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a class="tumblr" href="{{ about.shop_linkedin }}" target="_blank"><i class="fab fa-tumblr"></i></a>
+                                            <a class="instagram" href="{{ about.shop_instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
                                         </div>
                                     </div>
-                                    <a class="mail-to-friend font-sm color-grey" href="#"><i class="far fa-envelope"></i> Email to a
-                                        Friend</a>
+                                    <a class="mail-to-friend font-sm color-grey" href="{% url 'contact' %}"><i class="far fa-envelope"></i> Email to us</a>
                                     <h3 class="section-title style-1 mb-30 mt-30">Reviews ({{ product.get_reviews_count }})</h3>
                                     <!--Comments-->
                                     <div class="comments-area">

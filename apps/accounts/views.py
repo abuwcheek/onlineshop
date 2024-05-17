@@ -178,3 +178,16 @@ class PasswordResetConfirmView(View):
 
         messages.warning(request, "Parollar bir-biriga mos emas.")
         return render(request, 'accounts/password_reset_confirm.html', {'form': password_form})
+
+
+
+class MyProfileView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            user = User.objects.get(id = request.user)
+            context = {
+                'user': user,
+            }
+            return render(request, 'accounts/profile.html', context)
+        messages.warning(request, 'Siz oldin Login qilishingiz kerak.')
+        return redirect('accounts:login')

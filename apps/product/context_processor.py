@@ -6,7 +6,7 @@ def category_context(request):
      mega_menu = categories[:3]
      last_child_ctg = Category.objects.all().filter(is_active=True, children__isnull=True)
      brands = Brand.objects.all().filter(is_active=True)
-     about = About.objects.all()
+     about = About.objects.first()
      sevimlilar = 0
      cards = 0
 

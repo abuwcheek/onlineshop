@@ -150,7 +150,7 @@
                         <div class="row product-grid-4">
                             {% for f_product in fuatured_products %}
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30" style="width: 200px;" >
+                                <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="{% url 'detail' f_product.id %}">
@@ -184,7 +184,7 @@
                                             {% endif %}
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'shop-cart' %}"><i class="far fa-shopping-bag"></i></a>
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'add-shop-cart' f_product.id %}"><i class="far fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -253,15 +253,13 @@
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="shop-product-right.html">
+                                            <a href="{% url 'detail' n_add_product.id %}">
                                                 <img class="hover-img" src="{{ n_add_product.images.first.image_url }}" alt="">
                                                 <img class="default-img" src="{{ n_add_product.images.last.image_url }}" alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn hover-up"><i class="far fa-search"></i></a>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="far fa-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="far fa-exchange-alt"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{% url 'add_to_favorite' %}?product_id={{n_add_product.id}}"><i class="far fa-heart"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             <span class="{{ n_add_product.status|lower }}">{{ n_add_product.status }}</span>
@@ -286,7 +284,7 @@
                                             {% endif %}
                                         </div>
                                         <div class="product-action-1 show">
-                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.html"><i class="far fa-shopping-bag"></i></a>
+                                            <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'add-shop-cart' n_add_product.id %}"><i class="far fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -313,7 +311,7 @@
                             <figure class="mb-30 img-hover-scale overflow-hidden">
                                 <img src="{{ ctg.icon.url }}" alt="">                       
                             </figure>
-                            <h5><a href="/">{{ ctg.name }}</a></h5>
+                            <h5><a href="{% url 'shop' ctg.id %}">{{ ctg.name }}</a></h5>
                         </div>
                         {% endfor %}
                     </div>
@@ -329,7 +327,7 @@
                             <div class="banner-text">
                                 <span>Smart Offer</span>
                                 <h4>Save 20% on <br>iPhone 12</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="#">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -339,17 +337,7 @@
                             <div class="banner-text">
                                 <span>Sale off</span>
                                 <h4>Great Camera <br>Collection</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-md-none d-lg-flex">
-                        <div class="banner-img wow fadeIn animated  mb-sm-0">
-                            <img class="border-radius-10" src="{% static 'imgs/banner/banner-3.png' %}" alt="">
-                            <div class="banner-text">
-                                <span>New Arrivals</span>
-                                <h4>Shop Today’s <br>Deals & Offers</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="#">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -363,7 +351,7 @@
                     <div class="banner-text">
                         <h4 class="mb-15 mt-40 text-white">Repair Services</h4>
                         <h2 class="fw-600 mb-20 text-white">We're an Apple <br>Authorised Service Provider</h2>
-                        <a href="shop-grid-right.html" class="btn">Learn More <i class="fa fa-arrow-right"></i></a>
+                        <a href="#" class="btn">Learn More <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -375,28 +363,23 @@
                     <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-2-arrows"></div>
                     <div class="carausel-6-columns carausel-arrow-center" id="carausel-6-columns-2">
                         {% for n_arr_product in new_arrivals_products %}
-                        <div class="product-cart-wrap hover-up mb-30">
+                        <div class="product-cart-wrap small hover-up">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
-                                    <a href="shop-product-right.html">
+                                    <a href="{% url 'detail' n_arr_product.id %}">
                                         <img class="default-img" src="{{ n_arr_product.images.first.image_url }}" alt="">
                                         <img class="hover-img" src="{{ n_arr_product.images.last.image_url }}" alt="">
                                     </a>
                                 </div>
                                 <div class="product-action-1">
-                                    <a aria-label="Quick view" class="action-btn small hover-up" tabindex="0"><i class="far fa-search"></i></a>
-                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="far fa-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="far fa-exchange-alt"></i></a>
+                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="{% url 'add_to_favorite' %}?product_id={{n_arr_product.id}}" tabindex="0"><i class="far fa-heart"></i></a>
                                 </div>
                                 <div class="product-badges product-badges-position product-badges-mrg">
                                     <span class="{{ n_arr_product.status|lower }}">{{ n_arr_product.status }}</span>
                                 </div>
                             </div>
                             <div class="product-content-wrap">
-                                <div class="product-category">
-                                    <a href="/">{{ n_arr_product.categories.last.name }}</a>
-                                </div>
-                                <h2><a href="/">{{ n_arr_product.title }}</a></h2>
+                                <h2><a href="{% url 'detail' n_arr_product.id %}">{{ n_arr_product.title }}</a></h2>
                                 <div class="rating-result" title="({{ n_arr_product.get_reviews_count }})">
                                     <span>
                                         ({{ n_arr_product.get_reviews_count }} sharhlar)
@@ -404,10 +387,10 @@
                                 </div>
                                 <div class="product-price">
                                     {% if n_arr_product.get_new_price %}
-                                    <span class="old-price">{{ n_arr_product.get_price }} so'm</span><br>
-                                    <span>{{ n_arr_product.get_new_price }} so'm</span>
+                                        <span class="old-price">{{ n_arr_product.get_price }} so'm</span><br>
+                                        <span>{{ n_arr_product.get_new_price }} so'm</span>
                                     {% else %}
-                                    {{ n_arr_product.get_price }} so'm
+                                        {{ n_arr_product.get_price }} so'm
                                     {% endif %}
                                 </div>
                             </div>
@@ -433,7 +416,7 @@
                             <div class="deal-bottom">
                                 <p>Hurry Up! Offer End In:</p>
                                 <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                                <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="#" class="btn hover-up">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -444,13 +427,13 @@
                                 <h5>Computers & Laptop</h5>
                             </div>
                             <div class="deal-content">
-                                <h6 class="product-title"><a href="shop-product-right.html">Apple In-Ear Headphones with Remote and Mic</a></h6>
+                                <h6 class="product-title"><a href="#">Apple In-Ear Headphones with Remote and Mic</a></h6>
                                 <div class="product-price"><span class="new-price">$178.00</span><span class="old-price">$256.99</span></div>
                             </div>
                             <div class="deal-bottom">
                                 <p>Hurry Up! Offer End In:</p>
                                 <div class="deals-countdown" data-countdown="2026/03/25 00:00:00"></div>
-                                <a href="shop-grid-right.html" class="btn hover-up">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="#" class="btn hover-up">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -500,7 +483,7 @@
                             <div class="banner-text">
                                 <span>Gaming Area</span>
                                 <h4>Save 17% on <br>Assus Laptop</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="{% url 'shop' %}">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -515,15 +498,13 @@
                                         <div class="product-cart-wrap mb-30">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="/">
+                                                    <a href="{% url 'detail' most_best_product.id %}">
                                                         <img class="default-img" src="{{ most_best_product.images.first.image_url }}" alt="">
                                                         <img class="hover-img" src="{{ most_best_product.images.last.image_url }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"><i class="far fa-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="/"><i class="far fa-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="/"><i class="far fa-exchange-alt"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="{% url 'add_to_favorite' %}?product_id={{most_best_product.id}}"><i class="far fa-heart"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="{{ most_best_product.status|lower }}">{{ most_best_product.status }}</span>
@@ -531,9 +512,9 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ most_best_product.categories.last.name }}</a>
+                                                    <a href="{% url 'detail' most_best_product.id %}">{{ most_best_product.categories.last.name }}</a>
                                                 </div>
-                                                <h2><a href="/">{{ most_best_product.title }}</a></h2>
+                                                <h2><a href="{% url 'detail' most_best_product.id %}">{{ most_best_product.title }}</a></h2>
                                                 <div class="rating-result" title="({{ most_best_product.get_reviews_count }})%">
                                                     <span>
                                                         <span>({{ most_best_product.get_reviews_count }} sharhlar)</span>
@@ -548,7 +529,7 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="product-action-1 show">
-                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.html"><i class="far fa-shopping-bag"></i></a>
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'add-shop-cart' most_best_product.id %}"><i class="far fa-shopping-bag"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -566,15 +547,13 @@
                                         <div class="product-cart-wrap mb-30">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="shop-product-right.html">
+                                                    <a href="{% url 'detail' monthly_best_sell_popular.id %}">
                                                         <img class="default-img" src="{{ monthly_best_sell_popular.images.first.image_url }}" alt="">
                                                         <img class="hover-img" src="{{ monthly_best_sell_popular.images.last.image_url }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"><i class="far fa-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="/"><i class="far fa-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="/"><i class="far fa-exchange-alt"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="{% url 'add_to_favorite' %}?product_id={{monthly_best_sell_popular.id}}"><i class="far fa-heart"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="{{ monthly_best_sell_popular.status|lower }}">{{ monthly_best_sell_popular.status }}</span>
@@ -582,9 +561,9 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ monthly_best_sell_popular.categories.last.name }}</a>
+                                                    <a href="{% url 'detail' monthly_best_sell_popular.id %}">{{ monthly_best_sell_popular.categories.last.name }}</a>
                                                 </div>
-                                                <h2><a href="/">{{ monthly_best_sell_popular.title }}</a></h2>
+                                                <h2><a href="{% url 'detail' monthly_best_sell_popular.id %}">{{ monthly_best_sell_popular.title }}</a></h2>
                                                 <div class="rating-result" title="({{ monthly_best_sell_popular.get_reviews_count }})">
                                                     <span>
                                                         <span>({{ monthly_best_sell_popular.get_reviews_count }} sharhlar)</span>
@@ -599,7 +578,7 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="product-action-1 show">
-                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.html"><i class="far fa-shopping-bag"></i></a>
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'add-shop-cart' monthly_best_sell_popular.id %}"><i class="far fa-shopping-bag"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -616,15 +595,13 @@
                                         <div class="product-cart-wrap mb-30">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="shop-product-right.html">
+                                                    <a href="{% url 'detail' most_best_n_a.id %}">
                                                         <img class="default-img" src="{{ most_best_n_a.images.first.image_url }}" alt="">
                                                         <img class="hover-img" src="{{ most_best_n_a.images.last.image_url }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up"><i class="far fa-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="/"><i class="far fa-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="/"><i class="far fa-exchange-alt"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="{% url 'add_to_favorite' %}?product_id={{most_best_n_a.id}}"><i class="far fa-heart"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="{{ most_best_n_a.status|lower }}">{{ most_best_n_a.status }}</span>
@@ -632,9 +609,9 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="/">{{ most_best_n_a.categories.last.name }}</a>
+                                                    <a href="{% url 'detail' most_best_n_a.id %}">{{ most_best_n_a.categories.last.name }}</a>
                                                 </div>
-                                                <h2><a href="/">{{ most_best_n_a.title }}</a></h2>
+                                                <h2><a href="{% url 'detail' most_best_n_a.id %}">{{ most_best_n_a.title }}</a></h2>
                                                 <div class="rating-result" title="({{ most_best_n_a.get_reviews_count }})">
                                                     <span>
                                                         <span>({{ most_best_n_a.get_reviews_count }} sharhlar)</span>
@@ -650,7 +627,7 @@
                                                 </div>
 
                                                 <div class="product-action-1 show">
-                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.html"><i class="far fa-shopping-bag"></i></a>
+                                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{% url 'add-shop-cart' most_best_n_a.id %}"><i class="far fa-shopping-bag"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -686,7 +663,7 @@
                             <div class="banner-text">
                                 <span>Music Zone</span>
                                 <h4>Save 17% on <br>Headphone</h4>
-                                <a href="shop-grid-right.html">Shop Now <i class="fa fa-arrow-right"></i></a>
+                                <a href="#">Shop Now <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -696,11 +673,11 @@
                             {% for foot_deal in foot_deals_outlet %}
                             <article class="row align-items-center">
                                 <figure class="col-md-3 mb-0">
-                                    <a href="/"><img src="{{ foot_deal.images.first.image_url }}" alt=""></a>
+                                    <a href="{% url 'detail' foot_deal.id %}"><img src="{{ foot_deal.images.first.image_url }}" alt=""></a>
                                 </figure>
                                 <div class="col-md-9 pl-0">
                                     <h4 class="title-small">
-                                        <a href="shop-product-right.html">{{ foot_deal.title }}</a>
+                                        <a href="{% url 'detail' foot_deal.id %}">{{ foot_deal.title }}</a>
                                     </h4>
                                     <p>{{ foot_deal.categories.last.name }}</p>
                                     <div class="product-price">
@@ -723,11 +700,11 @@
                             {% for foot_top_sel in foot_top_selling %}
                             <article class="row align-items-center">
                                 <figure class="col-md-3 mb-0">
-                                    <a href="shop-product-right.html"><img src="{{ foot_top_sel.images.first.image_url }}" alt=""></a>
+                                    <a href="{% url 'detail' foot_top_sel.id %}"><img src="{{ foot_top_sel.images.first.image_url }}" alt=""></a>
                                 </figure>
                                 <div class="col-md-9 pl-0">
                                     <h4 class="title-small">
-                                        <a href="shop-product-right.html">{{ foot_top_sel.title }}</a>
+                                        <a href="{% url 'detail' foot_top_sel.id %}">{{ foot_top_sel.title }}</a>
                                     </h4>
                                     <p>{{ foot_top_sel.categories.last.name }}</p>
                                     <div class="product-price">
@@ -749,11 +726,11 @@
                             {% for foot_h_rel in foot_hot_releases %}
                             <article class="row align-items-center">
                                 <figure class="col-md-3 mb-0">
-                                    <a href="shop-product-right.html"><img src="{{ foot_h_rel.images.first.image_url }}" alt=""></a>
+                                    <a href="{% url 'detail' foot_h_rel.id %}"><img src="{{ foot_h_rel.images.first.image_url }}" alt=""></a>
                                 </figure>
                                 <div class="col-md-9 pl-0">
                                     <h4 class="title-small">
-                                        <a href="shop-product-right.html">{{ foot_h_rel.title }}</a>
+                                        <a href="{% url 'detail' foot_h_rel.id %}">{{ foot_h_rel.title }}</a>
                                     </h4>
                                     <p>{{ foot_h_rel.categories.last.name }}</p>
                                     <div class="product-price">

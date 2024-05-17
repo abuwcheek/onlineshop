@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-<a href="{% url 'home' %}" class="btn btn-primary" style="margin-left: 30px;">Back to home</a>
+<a href="{% url 'home' %}" class="btn btn-primary btn-lg active font-weight-bold btn-shadow-brand hover-up" style="margin-left: 30px;">Back to home</a>
 
 <div class="container">
     <br>
@@ -24,5 +24,20 @@
     <br>
     <br>
 </div>
+
+<br>
+<br>
+
+<div class="container">
+    <h4 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0 0 10px 20px;">Ro'yxatdan o'ting</h4>
+    <div class="col my-4 my-md-0">
+        <a href="{% url 'accounts:register' %}" class="btn btn-warning btn-lg active font-weight-bold btn-shadow-brand hover-up" role="button" aria-pressed="true">Register</a>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
 
 {% endblock content %}
