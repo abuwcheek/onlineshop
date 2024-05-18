@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{% url 'home' %}" rel="nofollow">Home</a>
-                    <span></span><a href="{% url 'shop-cart' %}">Shop Product</a>
+                    <span></span><a href="{% url 'shop-address' %}">Shop Address</a>
                     <span></span> Your Cart
                 </div>
             </div>
@@ -49,7 +49,7 @@
                                     </div>
                                     <form method="POST">
                                         {% csrf_token %}
-                                        <button class="btn btnn-rounded btn-sm mt-3" type="submit"><i class="far fa-arrow-right mr-5"></i>Return to shop</button>
+                                        <button class="btn btn-primary btn-lg active font-weight-bold btn-shadow-brand hover-up" type="submit"><i class="far fa-arrow-right mr-5"></i>Return to shop</button>
                                     </form>
                                 </div>
                             </div>

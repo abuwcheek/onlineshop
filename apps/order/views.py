@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Sevimlilar, AddToCardInWishlist, Payment
 from django.views import View
+from django.contrib import messages
 from apps.product.models import Product
 from django.db.models import Q
 from .forms import PaymentForm
@@ -14,6 +15,7 @@ class AddToFavorite(View):
           product = request.GET.get('product_id')
           product = Product.objects.get(id=product)
           Sevimlilar.objects.create(user=user, product=product)
+          messages.success(request, "Mahsulot sevimlilarga qo'shildi")
           return redirect(url)
 
      
@@ -31,6 +33,7 @@ class FavoriteView(View):
 def delete_favorite(request, uuid):
      sevimlilar = Sevimlilar.objects.get(id=uuid)
      sevimlilar.delete()
+     messages.success(request, "Mahsulot sevimlilardan o'chirildi")
      return redirect('favorite') 
 
 
@@ -39,6 +42,7 @@ def add_shop_cart(request, uuid):
      user = request.user
      product = Product.objects.get(id=uuid)
      AddToCardInWishlist.objects.create(user=user, product=product)
+     messages.success(request, "Mahsulot card ga qo'shildi.")
      return redirect(url)
 
 
@@ -57,6 +61,7 @@ class ShopCartView(View):
 def delete_shop_cart(request, uuid):
      order = AddToCardInWishlist.objects.get(id=uuid)
      order.delete()
+     messages.success(request, "Mahsulot card dan o'chirildi")
      return redirect('shop-cart')
 
 
@@ -98,4 +103,5 @@ class PaymentView(View):
           for order in payment.order.all():
                order.status = True
                order.save()
+               messages.success(request, "Buyurtmangiz Adminga yuborildi.")
           return redirect('shop')

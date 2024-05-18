@@ -136,7 +136,7 @@ class ContactView(View):
     def post(self, request):
         data = request.POST
         if not data.get('first_name'):
-            messages.error(request, "Maydonlar bo'sh bo'lmasligi lozim!")
+            messages.warning(request, "Maydonlar bo'sh bo'lmasligi lozim!")
             return redirect('contact')
 
         contact = Contact()
@@ -165,5 +165,5 @@ class SearchView(View):
         context = {
             'searchs': searchs,
         }
-
+        # messages.success(request, "Siz qidirgan mahsulotlar!!!")
         # return render(request, 'products/shop.html', context)
