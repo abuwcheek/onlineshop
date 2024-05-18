@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.contrib import messages
 from .models import Product, Brand, Category, ProductSize, Size, About, Contact
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -132,20 +133,24 @@ class ContactView(View):
         }
         return render(request, 'products/contact.html', context)
 
-    
-    # def post(self, request):
-    #     data=request.POST
-    #     contact=Contact()
+    def post(self, request):
+        data = request.POST
+        if not data.get('first_name'):
+            messages.error(request, "Maydonlar bo'sh bo'lmasligi lozim!")
+            return redirect('contact')
 
-    #     contact.name=data.get('name')
-    #     contact.phone=data.get('phone')
-    #     contact.email=data.get('email')
-    #     contact.subject=data.get('subject')
-    #     contact.message=data.get('message')
+        contact = Contact()
 
-    #     contact.save()
+        contact.first_name=data.get('first_name')
+        contact.email=data.get('email')
+        contact.phone=data.get('phone')
+        contact.subject=data.get('subject')
+        contact.message=data.get('message')
 
-    #     return render(request, 'contact.html')
+        contact.save()
+
+        messages.success(request, 'Malumotlaringiz yuborildi.')
+        return redirect('home')
 
 
 

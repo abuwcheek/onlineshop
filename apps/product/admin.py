@@ -1,6 +1,6 @@
 from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
-from .models import Category, Brand, Color, Product, ProductImage, Review, Tag, Size, ProductSize, About
+from .models import Category, Brand, Color, Product, ProductImage, Review, Tag, Size, ProductSize, About, Contact
 from django.utils.html import mark_safe
 
 
@@ -92,4 +92,10 @@ class RateAdmin(admin.ModelAdmin):
 class AboutAdmin(admin.ModelAdmin):
     list_display = ['phone_number', 'address']
     list_display_links = ['phone_number']
-    
+
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'email', 'phone')
+    list_display_links = ('first_name', 'email', 'phone')
