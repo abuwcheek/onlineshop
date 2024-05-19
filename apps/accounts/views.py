@@ -52,9 +52,9 @@ class LoginUserView(View):
             if user:
                 login(request, user)
                 messages.success(request, "Tizimga muvaffaqiyatli kirdingiz.")
-                return redirect('index')
+                return redirect('home')
 
-            messages.errors(request, "Login yoki parol noto'g'ri.")
+            messages.warning(request, "Login yoki parol noto'g'ri.")
             contex = {
                 'form': user_form,
             }

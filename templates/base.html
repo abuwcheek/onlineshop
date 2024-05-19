@@ -56,8 +56,12 @@
                                         <li><a href="#">РУССКИЙ</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{% url 'accounts:login' %}">Log In</a></li>
-                                <li><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Chiqish</a>
+                                {% else %}
+                                    <li><a href="{% url 'accounts:login' %}">Log In</a></li>
+                                    <li><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>

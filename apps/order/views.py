@@ -23,6 +23,10 @@ class AddToFavorite(View):
 class FavoriteView(View):
      def get(self, request):
           user = request.user
+          if not user.is_authenticated:
+               messages.warning(request, "Siz oldin Login qilishingiz kerak")
+               return redirect('accounts:login')
+
           sevimlilar = Sevimlilar.objects.filter(user=user)
           context = {
                'sevimlilar': sevimlilar,
@@ -50,6 +54,10 @@ def add_shop_cart(request, uuid):
 class ShopCartView(View):
      def get(self, request):
           user = request.user
+          if not user.is_authenticated:
+               messages.warning(request, "Siz oldin Login qilishingiz kerak")
+               return redirect('accounts:login')
+
           orders = AddToCardInWishlist.objects.filter(Q(user=user) & Q(status=False))
           context = {
                'orders': orders,
@@ -103,5 +111,6 @@ class PaymentView(View):
           for order in payment.order.all():
                order.status = True
                order.save()
-               messages.success(request, "Buyurtmangiz Adminga yuborildi.")
+          
+          messages.success(request, "Buyurtmangiz Adminga yuborildi.")
           return redirect('shop')
