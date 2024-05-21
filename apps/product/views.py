@@ -19,6 +19,7 @@ class HomePageView(View):
         foot_deals_outlet = products.order_by('?')[:3]
         foot_top_selling = products.order_by('?')[:3]
         foot_hot_releases = products.order_by('?')[:3]
+        category = Category.objects.all().filter(is_active=True)
 
 
         context = {
@@ -34,6 +35,7 @@ class HomePageView(View):
             'foot_deals_outlet': foot_deals_outlet,
             'foot_top_selling': foot_top_selling,
             'foot_hot_releases': foot_hot_releases,
+            'category': category,
         }
         return render(request, 'products/index.html', context)
 

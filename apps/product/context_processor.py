@@ -1,4 +1,4 @@
-from .models import Category, Brand, About
+from .models import Category, Brand, About, Product
 
 
 def category_context(request):
@@ -7,6 +7,7 @@ def category_context(request):
      last_child_ctg = Category.objects.all().filter(is_active=True, children__isnull=True)
      brands = Brand.objects.all().filter(is_active=True)
      about = About.objects.first()
+     lastes_product = Product.objects.all().filter(is_active=True).order_by('-created_at')[:4]
      sevimlilar = 0
      cards = 0
 
@@ -22,6 +23,7 @@ def category_context(request):
           'cards': cards,
           'brands': brands,
           'about': about,
+          'lastes_product': lastes_product,
      }
 
      return context

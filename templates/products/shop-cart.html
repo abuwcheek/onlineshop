@@ -43,7 +43,7 @@
                                     <tr>
                                         <td class="image product-thumbnail"><img src="{{ order.product.images.first.image_url }}" alt="#"></td>
                                         <td class="product-des product-name">
-                                            <p class="product-name"><a href="{% url 'detail' order.id %}">{{ order.product.title }}</a></p>
+                                            <p class="product-name"><a href="{% url 'detail' order.product.id %}">{{ order.product.title }}</a></p>
                                             <p class="font-xs">{{ order.product.mini_desc|slice:"50" }}
                                             </p>
                                         </td>
