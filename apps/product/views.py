@@ -158,14 +158,15 @@ class ContactView(View):
 
 class SearchView(View):
     def get(self, request):
-        query = request.GET.get('search')
+        query = request.GET.get('query')
         if not query:
-            searchs = Product.objects.all().order_by('-created_at')
-        else:
-            searchs = Product.objects.all().filter(Q(title__icontains = query) | Q(description__icontains = query))
+            messages.warning(request, 'Siz izlagan mahsulot mavjud emas')
+            return redirect('home')
+
+        searchs = Product.objects.all().filter(Q(title__icontains = query) | Q(description__icontains = query))
 
         context = {
             'searchs': searchs,
         }
-        # messages.success(request, "Siz qidirgan mahsulotlar!!!")
-        # return render(request, 'products/shop.html', context)
+        messages.success(request, "Siz izlagan mahsulotlar!!!")
+        return render(request, 'products/search.html', context)

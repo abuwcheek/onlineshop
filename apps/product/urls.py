@@ -8,5 +8,5 @@ urlpatterns = [
     path('product/<uuid:uuid>/', ProductDetailView.as_view(), name="detail"),
     path('about/', AboutView.as_view(), name="about"),
     path('contact/', ContactView.as_view(), name="contact"),
-    # path('search/', SearchView.as_view(), name="shop"),
+    path('search/', SearchView.as_view(), name="search"),
 ]

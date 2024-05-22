@@ -180,14 +180,15 @@ class PasswordResetConfirmView(View):
         return render(request, 'accounts/password_reset_confirm.html', {'form': password_form})
 
 
+class MyProfileView(View):
+    user = User()
+    def get(self, request, uuid):
+        if request.user.is_authenticated:
+            user = User.objects.get(id = uuid)
+            context = {
+                'user': user
+            }
+        #     return render(request, 'accounts/page-account.html', context)
+        # messages.warning(request, 'Siz oldin Login qilishingiz kerak.')
+        # return redirect('accounts:login')
 
-# class MyProfileView(View):
-#     def get(self, request):
-#         if request.user.is_authenticated:
-#             user = User.objects.get(id = request.user)
-#             context = {
-#                 'user': user,
-#             }
-#             return render(request, 'accounts/profile.html', context)
-#         messages.warning(request, 'Siz oldin Login qilishingiz kerak.')
-#         return redirect('accounts:login')

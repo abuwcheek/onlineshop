@@ -76,15 +76,15 @@
                         <a href="/"><img src="{% static 'imgs/theme/logo-default.png' %}" alt="logo"></a>
                     </div>
                     <div class="search-style-2">
-                        <form action="GET" action="{% url 'shop' %}">
+                        <form method="GET" action="{% url 'search' %}">
                             <select class="select-active">
                                 <option>All Categories</option>
                                 {% for ctg in last_child_ctg %}
                                     <option>{{ ctg.name }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="text" placeholder="search for items…" name="search">
-                            <button type="submit"> <i class="far fa-search"></i> </button>
+                            <input type="search" placeholder="search for items…" name="query">
+                            <button type="submit"><i class="far fa-search"></i> </button>
                         </form>
                     </div>
                     <div class="header-action-right">

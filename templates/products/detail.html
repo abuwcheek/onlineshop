@@ -199,11 +199,12 @@
                                     <!--comment form-->
                                     <div class="comment-form">
                                         <h4 class="mb-15">Add a review</h4>
-                                        <div class="product-rate d-inline-block mb-30">
+                                        <div class="product-rate d-inline-block mb-30" data-coreui-toggle="rating" data-coreui-value="3">
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
                                                 <form class="form-contact comment_form" action="#" id="commentForm">
+                                                    {% csrf_token %}
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="form-group">
@@ -218,11 +219,6 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="website" id="website" type="text" placeholder="Website">
                                                             </div>
                                                         </div>
                                                     </div>
