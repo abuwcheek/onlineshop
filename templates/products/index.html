@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <button type="button" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="{{ f_product.categories.last.name }}">
-                                            <a href="" style="color: white;">{{ f_product.categories.last.name }}</a>
+                                            <a href="{% url 'shop' f_product.categories.last.id %}" style="color: white;">{{ f_product.categories.last.name }}</a>
                                         </button>
                                         <h2><a href="{% url 'detail' f_product.id %}">{{ f_product.title }}</a></h2>
                                         <div class="rating-result" title="{{ f_product.get_reviews_count }}">
@@ -648,7 +648,6 @@
             <div class="container">
                 <div class="banner-bg wow fadeIn animated" style="background-image: url '{% static 'imgs/banner/banner-8.jpg' %}' ">
                     <div class="banner-content">
-                        <h5 class="text-grey-4 mb-15">Shop Today’s Deals</h5>
                         <h3 class="fw-600">Specialized storage for tourism</h3>
                     </div>
                 </div>
@@ -679,11 +678,11 @@
                                     <h4 class="title-small">
                                         <a href="{% url 'detail' foot_deal.id %}">{{ foot_deal.title }}</a>
                                     </h4>
-                                    <p>{{ foot_deal.categories.last.name }}</p>
+                                    <p><a href="{% url 'shop' foot_deal.categories.last.id %}" style="color: blueviolet;">{{ foot_deal.categories.last.name }}</a></p>
                                     <div class="product-price">
                                         {% if foot_deal.get_new_price %}
                                         <span class="old-price">{{ foot_deal.get_price }} so'm</span><br>
-                                        <span>{{ foot_deal.get_new_price }} so'm</span>
+                                        <span style="color: crimson;">{{ foot_deal.get_new_price }} so'm</span>
                                         {% else %}
                                         <span>{{ foot_deal.get_price }} so'm</span>
                                         {% endif %}
@@ -706,11 +705,11 @@
                                     <h4 class="title-small">
                                         <a href="{% url 'detail' foot_top_sel.id %}">{{ foot_top_sel.title }}</a>
                                     </h4>
-                                    <p>{{ foot_top_sel.categories.last.name }}</p>
+                                    <p><a href="{% url 'shop' foot_top_sel.categories.last.id %}" style="color: blueviolet;">{{ foot_top_sel.categories.last.name }}</a></p>
                                     <div class="product-price">
                                         {% if foot_top_sel.get_new_price %}
                                         <span class="old-price">{{ foot_top_sel.get_price }} so'm</span><br>
-                                        <span>{{ foot_top_sel.get_new_price }} so'm</span>
+                                        <span style="color: brown;">{{ foot_top_sel.get_new_price }} so'm</span>
                                         {% else %}
                                         <span class="old-price">{{ foot_top_sel.get_price }} so'm</span>
                                         {% endif %}
@@ -730,13 +729,13 @@
                                 </figure>
                                 <div class="col-md-9 pl-0">
                                     <h4 class="title-small">
-                                        <a href="{% url 'detail' foot_h_rel.id %}">{{ foot_h_rel.title }}</a>
+                                        <a href="{% url 'detail' foot_h_rel.id %}" >{{ foot_h_rel.title }}</a>
                                     </h4>
-                                    <p>{{ foot_h_rel.categories.last.name }}</p>
+                                    <p><a href="{% url 'shop' foot_h_rel.categories.last.id %}" style="color: blueviolet;">{{ foot_h_rel.categories.last.name }}</a></p>
                                     <div class="product-price">
                                         {% if foot_h_rel.get_new_price %}
                                         <span class="old-price">{{ foot_h_rel.get_price }} so'm</span><br>
-                                        <span>{{ foot_h_rel.get_new_price }} so'm</span>
+                                        <span style="color: brown;">{{ foot_h_rel.get_new_price }} so'm</span>
                                         {% else %}
                                         <span class="old-price">{{ foot_h_rel.get_price }} so'm</span>
                                         {% endif %}

@@ -11,7 +11,7 @@ class HomePageView(View):
         fuatured_products = products.order_by('?')[:16]
         popular_products = products.order_by('?')[:16]
         new_added_product = products.order_by('-created_at')
-        new_arrivals_products = products.order_by('-updated_at')
+        new_arrivals_products = products.order_by('-created_at')
         brands = Brand.objects.all().filter(is_active=True)
         monthly_best_sell_featured = products.order_by('-percentage')
         monthly_best_sell_popular = products.order_by('-created_at')
@@ -160,10 +160,12 @@ class SearchView(View):
     def get(self, request):
         query = request.GET.get('query')
         if not query:
-            messages.warning(request, 'Siz izlagan mahsulot mavjud emas')
             return redirect('home')
 
         searchs = Product.objects.all().filter(Q(title__icontains = query) | Q(description__icontains = query))
+        if not searchs:
+            messages.warning(request, 'Siz izlagan mahsulot mavjud emas')
+            return redirect('home')
 
         context = {
             'searchs': searchs,

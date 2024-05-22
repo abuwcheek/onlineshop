@@ -104,7 +104,7 @@
                                             </div>
                                             <a href="{% url 'add-shop-cart' product.id %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add cart</a>
                                             <div class="product-extra-link5">
-                                                <form action="{% url 'add_to_favorite' %}?product_id={{product.id}}" method="post">
+                                                <form action="{% url 'add_to_favorite' %}?product_id={{product.id}}" method="get">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="product_id" value="{{ product.id }}"><br>
                                                     <button type="submit" class="button button-add-to-cart" style="margin: 0 0 80% 20px;"><i class="far fa-heart"></i></button>
